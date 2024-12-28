@@ -29,19 +29,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install matplotlib
           pip install jupyter nbconvert nbclient
-
-      # Step 4: Execute the Jupyter notebook
-      - name: Execute notebook
+      - name: Run Jupyter Notebook
         run: |
-          jupyter nbconvert --to notebook --execute --inplace weatherData.ipynb
-
-      # Step 5: Commit and push the executed notebook
-      - name: Commit and push changes
-        run: |
-          git config --global user.name "GitHub Actions Bot"
-          git config --global user.email "actions@github.com"
-          git add weatherData.ipynb
-          git commit -m "Update notebook with latest data [skip ci]" || echo "No changes to commit"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          jupyter nbconvert --to notebook --execute weatherData.ipynb --output executed_notebook.ipynb
+      - name: Upload executed notebook as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: executed-notebook
+          path: executed_notebook.ipynb
