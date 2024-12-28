@@ -1,0 +1,8 @@
+jupyter
+nbconvert
+pandas
+numpy
+huggingface_hub
+datasets
+requests
+matplotlib
