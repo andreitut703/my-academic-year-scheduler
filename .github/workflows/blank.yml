@@ -1,12 +1,10 @@
 name: Run Weather Notebook
 
 on:
-  workflow_dispatch:    # Allows you to trigger the workflow manually
+  workflow_dispatch:  # Allows you to trigger the workflow manually
   schedule:
-    # Run 3 times daily at 08:00, 16:00, and 22:00 UTC
-    - cron: "0 8 * * *"
-    - cron: "0 16 * * *"
-    - cron: "0 22 * * *"
+    # Run every 30 minutes
+    - cron: "*/30 * * * *"
 
 jobs:
   run-notebook:
